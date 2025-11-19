@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to <?php echo @$site_name; ?> — Your Account Is Ready!</title>
+</head>
+<body style="margin:0; padding:0; background:#f5f7fa; font-family:'Helvetica Neue', Arial, sans-serif; color:#333;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f7fa; padding:20px 0;">
+    <tr>
+        <td align="center">
+            <table width="640" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+
+                <!-- Header -->
+                <tr>
+                    <td bgcolor="#1a73e8" align="center" style="padding:25px;">
+                        <img src="<?php echo @$logo_url; ?>" alt="<?php echo @$site_name; ?> Logo" style="max-height:94px; margin-bottom:10px;">
+                        <h1 style="margin:0; font-size:20px; color:#ffffff;">Welcome to <?php echo @$site_name; ?></h1>
+                        <div style="font-size:13px; color:#e0e0e0; margin-top:4px;">Your trusted online shopping destination</div>
+                    </td>
+                </tr>
+
+                <!-- Content -->
+                <tr>
+                    <td style="padding:30px; font-size:15px; line-height:1.6; color:#333333;">
+                        <p>Hi <?php echo @$firstname.' '.$lastname; ?>,</p>
+
+                        <p>
+                            Welcome to <strong><?php echo @$site_name; ?></strong>!
+                            Your customer account has been created successfully. To start shopping and tracking your orders, please activate your account using the button below.
+                        </p>
+
+                        <!-- Account Details -->
+                        <table width="100%" cellpadding="8" cellspacing="0" border="0"
+                               style="background:#f9fbfd; border:1px solid #e3eaf1; border-radius:6px; margin:20px 0;">
+                            <tr>
+                                <td colspan="2" style="font-weight:bold; color:#0d47a1; font-size:14px;">Your Account Information</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:13px; color:#555;">Full Name</td>
+                                <td style="font-weight:bold; color:#0d47a1;"><?php echo @$firstname.' '.$lastname; ?></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:13px; color:#555;">Email Address</td>
+                                <td style="font-weight:bold; color:#0d47a1;"><?php echo @$email_address; ?></td>
+                            </tr>
+                        </table>
+
+                        <!-- Activation Button -->
+                        <div style="text-align:center; margin:25px 0;">
+                            <a href="<?php echo @$activation_link; ?>"
+                               style="background:#1a73e8; color:#ffffff; padding:12px 26px; border-radius:4px; text-decoration:none; font-weight:bold; display:inline-block;">
+                                Activate My Account
+                            </a>
+                        </div>
+
+                        <p><strong>Next Steps:</strong></p>
+                        <ul style="padding-left:20px; margin:0 0 15px 0; font-size:14px; line-height:1.6; color:#333;">
+                            <li>Click <strong>Activate My Account</strong> to verify your email and activate your profile.</li>
+                            <li>Once activated, sign in to explore products, manage orders, and update your account settings.</li>
+                            <li>Enjoy exclusive deals, faster checkout, and personalized recommendations.</li>
+                        </ul>
+
+                        <p style="font-size:13px; color:#666;">
+                            If you didn’t create this account or believe this message was sent in error, please contact our support team at
+                            <a href="mailto:<?php echo @$support_email; ?>" style="color:#1a73e8;"><?php echo @$support_email; ?></a>.
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td bgcolor="#f9fbfd" style="padding:18px 24px; font-size:12px; color:#777; border-top:1px solid #e3eaf1;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td align="left" style="font-size:12px; color:#777;">
+                                    <strong><?php echo @$site_name; ?></strong><br>
+                                    <?php echo @$site_tagline ?? 'Shop smart, live better'; ?>
+                                </td>
+                                <td align="right" style="font-size:12px; color:#777;">
+                                    Need help? <a href="mailto:<?php echo @$support_email; ?>" style="color:#1a73e8;"><?php echo @$support_email; ?></a><br>
+                                    &copy; <?php echo date('Y'); ?> <?php echo @$site_name; ?>. All rights reserved.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

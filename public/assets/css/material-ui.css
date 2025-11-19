@@ -1,0 +1,295 @@
+@import "common.css";
+/* Input Fields */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    position: absolute;
+    top: 14px !important;
+    left: 32px !important;
+    font-size: 14px !important;
+    color: #6c757d !important;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/*input:focus + label, input:not(:placeholder-shown) + label,*/
+.form-control:focus + label, .form-control:not(:placeholder-shown) + label,
+.custom-select:focus + label, .custom-select:not(:placeholder-shown) + label {
+    top: -10px !important;
+    left: 28px !important;
+    font-size: 12px !important;
+    color: #007bff !important;
+    background: white;
+    padding: 0 5px !important;
+}
+
+.form-control, .custom-select {
+    width: 100%;
+    border: 2px solid #ddd !important;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus, .form-control:focus, .custom-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+input[type=text], input[type=password], input[type=tel], input[type=email], select, .form-control, .custom-select {
+    padding: .375rem .75rem;
+}
+
+input[type=text], input[type=password], input[type=tel], input[type=number], input[type=email], select, .custom-select {
+    height: calc(3rem + 2px);
+}
+
+
+/* start search box */
+.search-list {
+    float: left;
+    list-style: none;
+    margin-top: -1px;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 999;
+}
+
+.search-list li {
+    padding: 10px;
+    background: #ffffff;
+    border-bottom: #ced4da 1px solid;
+    border-left: #ced4da 1px solid;
+    border-right: #ced4da 1px solid;
+}
+
+.search-list li:hover {
+    background: #b0bcf6;
+    color: white;
+    cursor: pointer;
+}
+
+/* product search */
+#productSearchForm .input-group {
+    border: var(--md-primary-dark) solid 1px !important;
+}
+
+#productSearchForm .form-control, #productSearchForm select, #productSearchForm .btn {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+#productSearchForm .btn {
+    background-color: var(--md-primary-dark);
+}
+
+/* ============================================
+   Stylish Select Dropdown for Search Bar
+   ============================================ */
+
+.search-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 40px 8px 12px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236200EE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.search-select:hover {
+    border-color: #6200EE;
+    box-shadow: 0 0 4px rgba(98, 0, 238, 0.2);
+}
+
+.search-select:focus {
+    border-color: #6200EE;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.25);
+}
+
+/* Dropdown options */
+.search-select option {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Optional: Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .search-select {
+        background-color: var(--md-primary-dark);
+        border-color: #444;
+        color: #f1f1f1;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2303DAC6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    }
+
+    .search-select:hover {
+        border-color: #03DAC6;
+    }
+}
+
+
+.iq-ribbon-effect {
+    position: absolute;
+    display: flex;
+    background: var(--bs-body-bg);
+    z-index: 100;
+    left: 2rem;
+    top: 0rem;
+    padding: 0.625rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    white-space: nowrap;
+    text-transform: UPPERCASE;
+
+    > span {
+        transform: rotate(180deg);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -1.5em;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 1.5em solid var(--bs-body-bg);
+        border-left: 1.5em solid transparent;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: -1.5em;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 1.5em solid var(--bs-body-bg);
+        border-right: 1.5em solid transparent;
+    }
+}
+
+@media (min-width: 1200px) {
+    h4, .h4 {
+        font-size: 1.44rem;
+    }
+}
+
+footer .inner-box {
+    padding: 5.625rem 0;
+}
+
+.iq-product-custom-card .iq-product-img {
+    height: unset;
+    min-height: unset;
+}
+
+.cta section {
+    background-size: cover;
+    background-position: center;
+    transition: all 0.4s ease-in-out;
+}
+
+.cta section:hover {
+    transform: scale(1.01);
+}
+
+.cta .btn {
+    transition: 0.3s;
+}
+
+.cta .btn:hover {
+    transform: translateY(-2px);
+}
+
+.page-hero {
+    position: relative;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.page-hero .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.parallax {
+    background-attachment: fixed;
+}
+
+/* Breadcrumb styling */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb a {
+    color: #fff;
+    opacity: 0.85;
+    transition: 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    opacity: 1;
+}
+
+/* ===== Animation Effects ===== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-hero {
+        background-attachment: scroll;
+        min-height: 200px;
+    }
+    .page-hero h1 {
+        font-size: 1.75rem;
+    }
+}
+
+
+.highlight-flash {
+    animation: flashInvalid 0.8s ease;
+}
+
+@keyframes flashInvalid {
+    0%   { box-shadow: 0 0 0px rgba(220,53,69,0); }
+    50%  { box-shadow: 0 0 10px rgba(220,53,69,0.8); }
+    100% { box-shadow: 0 0 0px rgba(220,53,69,0); }
+}
+

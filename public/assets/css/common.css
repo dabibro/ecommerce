@@ -1,0 +1,304 @@
+@import "fonts.css";
+
+/* ============================================
+   Material Design Color Palette
+   For eCommerce Store Theme
+   Based on Material Design 3
+   ============================================ */
+
+:root {
+    /* Primary brand color */
+    --md-primary: #6200EE;
+    --md-primary-light: #BB86FC;
+    --md-primary-dark: #3700B3;
+    --md-on-primary: #FFFFFF;
+
+    /* Secondary / accent */
+    --md-secondary: #03DAC6;
+    --md-secondary-light: #70EFDE;
+    --md-secondary-dark: #00C4B4;
+    --md-on-secondary: #000000;
+
+    /* Neutral colors */
+    --md-background: #FFFFFF;
+    --md-surface: #FFFFFF;
+    --md-on-background: #1C1B1F;
+    --md-on-surface: #1C1B1F;
+
+    /* Success / warning / error */
+    --md-success: #4CAF50;
+    --md-on-success: #FFFFFF;
+
+    --md-warning: #FFC107;
+    --md-on-warning: #000000;
+
+    --md-error: #B00020;
+    --md-on-error: #FFFFFF;
+
+    /* Additional shades for UI states */
+    --md-outline: #E0E0E0;
+    --md-muted: #9E9E9E;
+    --md-disabled: #BDBDBD;
+
+    /* Elevation / shadows (Material style) */
+    --md-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+    --md-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* ============================================
+   Example Utility Classes
+   ============================================ */
+
+.bg-primary {
+    background-color: var(--md-primary) !important;
+    color: var(--md-on-primary) !important;
+}
+
+.bg-primary-dark {
+    background-color: var(--md-primary-dark) !important;
+    color: var(--md-on-primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--md-secondary) !important;
+    color: var(--md-on-secondary) !important;
+}
+
+.bg-surface {
+    background-color: var(--md-surface) !important;
+    color: var(--md-on-surface) !important;
+}
+
+.text-primary {
+    color: var(--md-primary) !important;
+}
+
+.text-secondary {
+    color: var(--md-secondary) !important;
+}
+
+.text-success {
+    color: var(--md-success) !important;
+}
+
+.text-warning {
+    color: var(--md-warning) !important;
+}
+
+.text-error {
+    color: var(--md-error) !important;
+}
+
+.text-muted {
+    color: var(--md-muted) !important;
+}
+
+.btn-primary {
+    background-color: var(--md-primary);
+    color: var(--md-on-primary);
+    border: none;
+    box-shadow: var(--md-shadow-1);
+}
+
+.btn-primary:hover {
+    background-color: var(--md-primary-dark);
+    box-shadow: var(--md-shadow-2);
+}
+
+.btn-secondary {
+    background-color: var(--md-secondary);
+    color: var(--md-on-secondary);
+    border: none;
+    box-shadow: var(--md-shadow-1);
+}
+
+.btn-secondary:hover {
+    background-color: var(--md-secondary-dark);
+    box-shadow: var(--md-shadow-2);
+}
+
+body {
+    font-family: "Red Hat Display", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+
+/*Loader*/
+
+#content-loader {
+    position: absolute;
+    padding: 10%;
+    z-index: 9999999;
+    width: 85%;
+    margin: 0 auto !important;
+}
+
+#content-loader .loader-container {
+    width: 180px;
+    height: 180px;
+    margin: 8% auto 0;
+    /*background: url("../images/logo.png") no-repeat center center white;*/
+    background-size: 64px 64px !important;
+    border-radius: 50%;
+}
+
+#content-loader .loader-container .loader {
+    border: 16px solid #00297f;
+    border-radius: 50%;
+    border-top: 16px solid #3380f3;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ri {
+    position: relative;
+    bottom: -3px;
+}
+
+.ri-ml {
+    margin-left: .25rem;
+}
+
+.ri-mr {
+    margin-right: .25rem;
+}
+
+.required {
+    color: red !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.icon-spin {
+    display: inline-block;
+    animation: spin 1s infinite linear;
+    margin-right: .25rem;
+    bottom: -2px;
+    position: relative
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+button {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.landing-pages .inner-box {
+    padding-left: 3rem;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+@media (max-width: 768px) {
+    /* Tablets & mobile screens */
+    .landing-pages .inner-box {
+        padding: unset !important;
+        text-align: center !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+}
+
+
+.datepicker {
+    padding: 10px;
+}
+
+
+/* Croppie */
+
+label.cabinet {
+    display: block;
+    cursor: pointer;
+}
+
+label.cabinet input.file {
+    position: relative;
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    margin-top: -30px;
+}
+
+#cropper-container {
+    width: 480px;
+    height: 480px;
+}
+
+figure figcaption {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    text-shadow: 0 0 10px #000;
+}
+
+@media (min-width: 992px) {
+    .modal-lg-extend {
+        max-width: 1200px;
+    }
+}
+
+.truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
