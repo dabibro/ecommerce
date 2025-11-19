@@ -11,12 +11,12 @@ ini_set('max_execution_time', 3000);
 
 const BASE_PATH = "/";
 const SITE_NAME = "";
-const URL = "https://dev.ayaadevarieties.com.ng/";
+const URL = "http://dev.ayaadevarieties.com.ng/";
 const SUPPORT_EMAIL = "support@ayaadevarieties.com.ng";
 const CONTACT_EMAIL = "";
 
 const CUSTOMER_SESSION = "AyaadeStoreSession";
-
+const CART_SESSION = "AyaadeCartSession";
 /* Resources Directory */
 const ASSETS_PATH = BASE_PATH . 'assets/';
 const IMAGES_PATH = BASE_PATH . 'assets/images/';

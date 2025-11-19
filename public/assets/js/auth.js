@@ -33,3 +33,9 @@ function openForgotPassword() {
     });
 }
 
+function logOut() {
+    staticLoader();
+    $.get(base_path + 'auth/logout', {}, function (e) {
+        $(ajax_response).html(e);
+    });
+}

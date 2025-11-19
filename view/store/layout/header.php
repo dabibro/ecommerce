@@ -144,13 +144,14 @@
                         <li class="nav-item">
                             <a class="nav-link position-relative" href="/cart">
                                 <i class="ri-shopping-cart-line ri ri-mr"></i> My Cart
-                                <span class="cart-counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+                                <span class="cart-counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+                                      id="cartCount"><?= $this->cart_count ?></span>
                             </a>
                         </li>
                         <?php if (!empty($this->auth->id)) { ?>
                             <li class="nav-item">
                                 <a class="nav-link menu-arrow justify-content-start" data-bs-toggle="collapse"
-                                   href="#homeData" role="button" aria-expanded="false" aria-controls="homeData">
+                                   href="#my-account" role="button" aria-expanded="false" aria-controls="my-account">
                                     <span class="item-name">My Account</span>
                                     <svg fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-18" width="18"
                                          height="18" viewBox="0 0 24 24">
@@ -158,14 +159,22 @@
                                               stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
                                 </a>
-                                <ul class="iq-header-sub-menu list-unstyled collapse" id="homeData">
-                                    <li class="nav-item"><a class="nav-link " href="../landing-pages/index.html">App
-                                            Landing Page</a></li>
+                                <ul class="iq-header-sub-menu list-unstyled collapse" id="my-account" style="right: 0">
                                     <li class="nav-item">
-                                        <a class="nav-link active"
-                                           href="../landing-pages/software-landing-page.html">
-                                            Software Landing Page
-                                        </a>
+                                        <a class="nav-link bg-light active"
+                                           href="javascript:">Welcome, <?= $this->auth->customer_name ?></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="<?= BASE_PATH ?>profile/">My Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="<?= BASE_PATH ?>orders/">My Order</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="<?= BASE_PATH ?>orders/">My Wishlist</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" onclick="logOut()" href="javascript:">Logout?</a>
                                     </li>
                                 </ul>
                             </li>

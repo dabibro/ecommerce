@@ -7,6 +7,7 @@ const app_modal_extend = "app-modal-extend";
 const cropper_modal = "cropper_modal";
 const app_loader = '<div style="position:relative;" class="text-center" id="content-loader"><div class="loader-container"><div class="loader"></div></div></div>';
 const alert_response = "#alert-response";
+const ajax_response = "#ajax-response";
 
 if (base_path) {
     base_path = base_path.value;

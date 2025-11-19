@@ -29,9 +29,9 @@ class Products
         return $this->service->getCategoryShowcase();
     }
 
-    public function getProduct(): array
+    public function getProduct($params = [], $orderBy = "", $limit = ""): array
     {
-        return $this->service->getProduct();
+        return $this->service->getProduct($params, $orderBy, $limit);
     }
 
     public function getProductsPricing($params = []): array

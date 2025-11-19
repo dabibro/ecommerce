@@ -16,3 +16,4 @@
 <script src="<?php echo $this->assets . 'js/'; ?>bootstrap.validator.js" defer></script>
 <script src="<?php echo $this->assets . 'js/'; ?>app.js?v=<?php echo time(); ?>" defer></script>
 <script src="<?php echo $this->assets . 'js/'; ?>auth.js?v=<?php echo time(); ?>" defer></script>
+<script src="<?php echo $this->assets . 'js/'; ?>product.js?v=<?php echo time(); ?>" defer></script>

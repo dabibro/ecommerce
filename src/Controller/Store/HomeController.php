@@ -15,16 +15,29 @@ class HomeController extends App
     public $contact_number, $contact_email, $contact_address, $map_url;
     public $trending_products;
 
-    public $auth_session;
+    public $auth_session, $auth;
+    public int $cart_count = 0;
+    public $cart_items;
+
+    public $cart_total;
+    public $product_detail;
+
+    protected string $logo, $header_title, $min_price, $max_price;
+    protected array $price_params;
     protected Application $appAPI;
+
+    protected AuthController $authController;
 
     protected Customers $customerAPI;
     protected Products $productsAPI;
     protected ProductsController $productsController;
 
-    protected string $logo, $header_title, $min_price, $max_price;
-    protected array $price_params;
+    protected CartController $cartController;
 
+
+    /**
+     * @throws \JsonException
+     */
     public function __construct()
     {
         parent::__construct();
@@ -100,12 +113,83 @@ class HomeController extends App
         $this->layout();
     }
 
+    /**
+     * @throws \JsonException
+     */
+    public function product($id): void
+    {
+        $this->productsAPI = new Products();
+        $getProduct = $this->productsAPI->getProduct(['id' => $id]);
+        if (empty($id) || empty($getProduct)) {
+            $this->replace(BASE_PATH);
+        }
+        $this->product_detail = DataHandlers::convertObj($getProduct[0]);
+
+        $this->page_title = ucwords($this->product_detail->product_name) . " - " . $this->site_name;
+        $this->breadcrumb = [];
+        $getSimilar = $this->productsAPI->getProduct(['product_category' => $this->product_detail->product_category], 'RAND()', 8);
+        if (!empty($getSimilar)) {
+            $this->product_list = $getSimilar;
+        }
+        $product_image = ProductsController::ProductImages($this->product_detail->product_images);
+        $this->meta = [
+            'og:title' => ucwords($this->product_detail->product_name) . ' - ' . $this->currency . ' ' . number_format($this->product_detail->sale_price, 2),
+            'og:image' => URL . ltrim($product_image, '/'),
+            'og:type' => 'product',
+            'og:site_name' => $this->site_name,
+            'og:url' => URL . 'product/' . $this->product_detail->id,
+            'product:price:amount' => $this->product_detail->sale_price,
+            'product:price:currency' => 'NGN',
+        ];
+        if (!empty($this->product_detail->product_description)) {
+            $this->meta['og:description'] = htmlspecialchars_decode($this->product_detail->product_description);
+            $this->site_description = htmlspecialchars_decode($this->product_detail->product_description);
+        }
+        if (!empty($this->product_detail->product_category)) {
+            $getCategory = $this->productsAPI->getCategory(['category_id' => $this->product_detail->product_category]);
+            if (!empty($getCategory)) {
+                $this->category_data = DataHandlers::convertObj($getCategory[0]);
+            }
+        }
+        $this->page = $this->pages . 'product.php';
+        $this->layout();
+    }
+
+    public function cart(): void
+    {
+        $this->page_title = "Cart | " . $this->site_name;
+        $this->page = $this->pages . 'cart.php';
+        $this->cartController = new CartController();
+        $this->cart_items = $this->cartController->getItems();
+        $this->layout();
+    }
+
+    public function cart_to_database()
+    {
+
+
+    }
+
+    public function checkout(): void
+    {
+        $this->page_title = "Cart | " . $this->site_name;
+        $this->page = $this->pages . 'cart.php';
+        $this->cartController = new CartController();
+        $this->cart_items = $this->cartController->getItems();
+        $this->layout();
+
+    }
+
+
     public function layout(): void
     {
         require_once $this->views . 'index.php';
         die();
     }
 
+    /**
+     * @throws \JsonException
+     */
     protected function openStore(): void
     {
         $this->views .= 'store/';
@@ -114,12 +198,14 @@ class HomeController extends App
         $this->appAPI = new Application();
         $this->productsAPI = new Products();
         $this->productsController = new ProductsController();
+        $this->cartController = new CartController();
         $this->config = $this->appAPI->getConfig(['id' => 1]);
         if (!empty($this->config)) {
             $this->config = DataHandlers::convertObj($this->config[0]);
             $this->site_name = $this->config->biz_name;
             $this->logo = $this->assets . 'images/logo.png';
             $getStore = $this->appAPI->getStore(['reference' => $this->config->online_store]);
+            $this->site_description = htmlspecialchars_decode($this->config->biz_description);
             if (!empty($getStore)) {
                 $this->store = DataHandlers::convertObj($getStore[0]);
                 $this->site_name = $this->store->store_name;
@@ -137,6 +223,22 @@ class HomeController extends App
                 }
             }
         }
+        $this->cart_count = $this->cartController->countItems();
+        $this->cart_total = $this->cartController->getTotal();
+        $this->authenticate();
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function authenticate(): void
+    {
+        if (isset($_COOKIE[$this->auth_session])) {
+            $session = $_COOKIE[$this->auth_session];
+            $credentials = json_decode($session, false, 512, JSON_THROW_ON_ERROR);
+            $this->auth = $credentials;
+        }
+
     }
 
     protected function getPricing(): void

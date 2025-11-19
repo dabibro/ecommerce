@@ -1,32 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const priceSlider = document.getElementById('price-slider');
-    const minDisplay = document.getElementById('min-price-display');
-    const maxDisplay = document.getElementById('max-price-display');
-    const minInput = document.getElementById('min-price');
-    const maxInput = document.getElementById('max-price');
-    const minPrice = parseInt(document.getElementById('min-sale-price').value) || 0;
-    const maxPrice = parseInt(document.getElementById('max-sale-price').value) || 0;
-    // Initialize slider
-    noUiSlider.create(priceSlider, {
-        start: [500, 20000],
-        connect: true,
-        range: {
-            'min': minPrice,
-            'max': maxPrice,
-        },
-        format: {
-            to: value => Math.round(value),
-            from: value => Number(value)
-        }
-    });
-    priceSlider.noUiSlider.on('update', function (values) {
-        const minVal = values[0];
-        const maxVal = values[1];
-        minDisplay.innerText = minVal;
-        maxDisplay.innerText = maxVal;
-        minInput.value = minVal;
-        maxInput.value = maxVal;
-    });
+    if (document.getElementById('price-slider')) {
+        const priceSlider = document.getElementById('price-slider');
+        const minDisplay = document.getElementById('min-price-display');
+        const maxDisplay = document.getElementById('max-price-display');
+        const minInput = document.getElementById('min-price');
+        const maxInput = document.getElementById('max-price');
+        const minPrice = parseInt(document.getElementById('min-sale-price').value) || 0;
+        const maxPrice = parseInt(document.getElementById('max-sale-price').value) || 0;
+        // Initialize slider
+        noUiSlider.create(priceSlider, {
+            start: [500, 20000],
+            connect: true,
+            range: {
+                'min': minPrice,
+                'max': maxPrice,
+            },
+            format: {
+                to: value => Math.round(value),
+                from: value => Number(value)
+            }
+        });
+        priceSlider.noUiSlider.on('update', function (values) {
+            const minVal = values[0];
+            const maxVal = values[1];
+            minDisplay.innerText = minVal;
+            maxDisplay.innerText = maxVal;
+            minInput.value = minVal;
+            maxInput.value = maxVal;
+        });
+    }
 });
 
 function updateSortOrder(select) {

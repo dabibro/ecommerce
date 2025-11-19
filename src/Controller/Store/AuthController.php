@@ -146,9 +146,26 @@ class AuthController extends HomeController
         }
     }
 
-    public function logout()
+    /**
+     * @throws \JsonException
+     */
+    public function logout(): void
     {
-
+        if (isset($_COOKIE[$this->auth_session])) {
+            $session = $_COOKIE[$this->auth_session];
+            $credentials = json_decode($session, false, 512, JSON_THROW_ON_ERROR);
+            $params = [
+                'pk' => $credentials->id,
+                'pkField' => 'id',
+                'last_seen' => $this->current_timestamp,
+                'login_status' => 0,
+            ];
+            $this->customerAPI = new Customers();
+            @$this->customerAPI->updateCustomer($params);
+            setcookie($this->auth_session, '', time() - 3600, '/');
+            unset($_COOKIE[$this->auth_session]);
+        }
+        $this->replace(BASE_PATH);
     }
 
     public function forgot_password(): void
@@ -244,7 +261,6 @@ class AuthController extends HomeController
         echo Responses::alertResponseUI('Password reset successful! Redirecting...', 'success');
         $this->replace(BASE_PATH);
     }
-
 
     /**
      * @throws Exception

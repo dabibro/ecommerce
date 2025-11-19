@@ -19,3 +19,7 @@ Router::get('shop/', static function () {
     $controller->products();
 });
 
+Router::get('product/(.*)', static function (Request $request) {
+    $controller = new \App\Controller\Store\HomeController();
+    $controller->product($request->params[0]);
+});

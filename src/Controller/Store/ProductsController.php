@@ -47,7 +47,8 @@ class ProductsController extends App
                             </a>
                         </div>
                         <div class="iq-product-card-hover-effect-2 iq-product-info">
-                            <a href="#" class="btn btn-icon iq-product-btn rounded-pill cart-btn">
+                            <a href="javascript:" class="btn btn-icon iq-product-btn rounded-pill cart-btn add-to-cart"
+                            data-id="' . $product['product_id'] . '" data-name="' . $product['product_name'] . '" data-price="' . $product['sale_price'] . '" data-image="' . $image . '">
                             <span class="btn-inner">
                                 <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +108,7 @@ class ProductsController extends App
     /**
      * @throws \JsonException
      */
-    public static function ProductImages($images, $position = 0)
+    public static function ProductImages($images, $position = 0): string
     {
         $response = NO_IMAGE;
         $directory = 'assets/images/products/';
@@ -127,8 +128,8 @@ class ProductsController extends App
             elseif (!empty($images_array[5]) && file_exists($directory . $images_array[5])):
                 $response = PRODUCT_IMAGES . ($images_array[5]);
             endif;
-        } else {
-            @$response = ($images_array[$position]);
+        } else if (!empty($images_array[$position]) && file_exists($directory . $images_array[$position])) {
+            $response = PRODUCT_IMAGES . ($images_array[$position]);
         }
         return $response;
     }

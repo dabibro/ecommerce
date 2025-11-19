@@ -293,3 +293,50 @@ footer .inner-box {
     100% { box-shadow: 0 0 0px rgba(220,53,69,0); }
 }
 
+
+.slider__flex {
+    display: flex;
+}
+
+.slider__thumbs {
+    width: 120px;
+    height: 500px;
+}
+
+.slider__thumbs .swiper-slide {
+    height: 110px;
+    margin-bottom: 20px !important;
+    opacity: .5;
+    cursor: pointer;
+}
+
+.slider__thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+}
+
+.slider__main {
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider__main .swiper-slide {
+    height: 500px !important;
+}
+
+.product-vertical-slider .slider__images {
+    overflow: hidden !important;
+    height: 500px !important;
+}
+
+.slider__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    display: none !important;
+}

@@ -90,17 +90,22 @@ class ProductsRepository extends SQLQueryBuilder
         WHERE rn <= 5
         ORDER BY product_category, id DESC
     ";
-
         return $this->getArray($sql);
     }
 
-    public function getProduct($params = []): array
+    public function getProduct($params = [], $orderBy = "", $limit = ""): array
     {
         $query = $this->select()->from($this->products)->where("1 AND quantity > 0");
         if (!empty($params)) {
             foreach ($params as $param => $value) {
                 $query->aand(" " . $param . " = '$value' ");
             }
+        }
+        if (!empty($orderBy)) {
+            $query->orderBy($orderBy);
+        }
+        if (!empty($limit)) {
+            $query->setLimit($limit);
         }
         return $query->getQueryArray();
     }

@@ -13,6 +13,7 @@
     } ?>
     <div class="content-inner pb-0 container-fluid" id="page_layout">
         <div class="container">
+            <div id="ajax-response"></div>
             <?php
             if (file_exists($this->page)) {
                 require $this->page;

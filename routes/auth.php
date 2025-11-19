@@ -29,6 +29,11 @@ Router::post('auth/login', static function () {
     $controller->doLogin();
 });
 
+Router::get('auth/logout', static function () {
+    $controller = new \App\Controller\Store\AuthController();
+    $controller->logout();
+});
+
 Router::get('auth/forgot-password', static function () {
     $controller = new \App\Controller\Store\AuthController();
     $controller->forgot_password();

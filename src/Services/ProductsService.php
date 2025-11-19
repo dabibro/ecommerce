@@ -44,10 +44,10 @@ class ProductsService
         return $result;
     }
 
-    public function getProduct($params = []): array
+    public function getProduct($params = [], $orderBy = "", $limit = ""): array
     {
         $result = [];
-        $resp = $this->repository->getProduct($params);
+        $resp = $this->repository->getProduct($params, $orderBy, $limit);
         if (!empty($resp['dataArray'])) {
             $result = $resp['dataArray'];
         }

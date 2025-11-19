@@ -7,23 +7,23 @@
    ============================================ */
 
 :root {
-    /* Primary brand color */
-    --md-primary: #6200EE;
-    --md-primary-light: #BB86FC;
-    --md-primary-dark: #3700B3;
+    /* Brand Primary – Trustworthy E-commerce Blue */
+    --md-primary: #1A73E8;          /* Main brand blue */
+    --md-primary-light: #64A5F5;    /* Hover / light shade */
+    --md-primary-dark: #0F5EC4;     /* Dark shade */
     --md-on-primary: #FFFFFF;
 
-    /* Secondary / accent */
-    --md-secondary: #03DAC6;
-    --md-secondary-light: #70EFDE;
-    --md-secondary-dark: #00C4B4;
-    --md-on-secondary: #000000;
+    /* Secondary – Accent Orange (Great for CTAs) */
+    --md-secondary: #FF6F00;        /* Button/CTA accent */
+    --md-secondary-light: #FFA040;
+    --md-secondary-dark: #E65100;
+    --md-on-secondary: #FFFFFF;
 
-    /* Neutral colors */
+    /* Neutral Colors – Clean white store look */
     --md-background: #FFFFFF;
-    --md-surface: #FFFFFF;
-    --md-on-background: #1C1B1F;
-    --md-on-surface: #1C1B1F;
+    --md-surface: #FAFAFA;
+    --md-on-background: #212121;
+    --md-on-surface: #212121;
 
     /* Success / warning / error */
     --md-success: #4CAF50;
@@ -32,20 +32,24 @@
     --md-warning: #FFC107;
     --md-on-warning: #000000;
 
-    --md-error: #B00020;
+    --md-error: #D32F2F;
     --md-on-error: #FFFFFF;
 
-    /* Additional shades for UI states */
+    /* Additional UI shades */
     --md-outline: #E0E0E0;
     --md-muted: #9E9E9E;
     --md-disabled: #BDBDBD;
 
-    /* Elevation / shadows (Material style) */
-    --md-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-    --md-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16),
-    0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows */
+    --md-shadow-1:
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+
+    --md-shadow-2:
+            0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
 
 /* ============================================
    Example Utility Classes

@@ -1,6 +1,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="<?php echo strip_tags(htmlspecialchars_decode($this->site_description)); ?>">
+    <?php if (!empty($this->meta)) {
+        foreach ($this->meta as $meta => $value) {
+            echo '<meta property="' . $meta . '" content="' . $value . '">';
+        }
+    } ?>
     <title><?php if (!empty($this->page_title)) {
             echo $this->page_title;
         } ?></title>

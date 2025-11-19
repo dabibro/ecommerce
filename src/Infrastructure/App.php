@@ -33,6 +33,7 @@ class App
     public $db_update;
     public $config;
     protected string $page_title, $title, $subtitle, $site_name, $site_description, $site_keywords, $website_url;
+    protected array $meta;
 
     public function __construct()
     {
