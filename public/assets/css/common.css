@@ -8,13 +8,13 @@
 
 :root {
     /* Brand Primary – Trustworthy E-commerce Blue */
-    --md-primary: #1A73E8;          /* Main brand blue */
-    --md-primary-light: #64A5F5;    /* Hover / light shade */
-    --md-primary-dark: #0F5EC4;     /* Dark shade */
+    --md-primary: #1A73E8; /* Main brand blue */
+    --md-primary-light: #64A5F5; /* Hover / light shade */
+    --md-primary-dark: #0F5EC4; /* Dark shade */
     --md-on-primary: #FFFFFF;
 
     /* Secondary – Accent Orange (Great for CTAs) */
-    --md-secondary: #FF6F00;        /* Button/CTA accent */
+    --md-secondary: #FF6F00; /* Button/CTA accent */
     --md-secondary-light: #FFA040;
     --md-secondary-dark: #E65100;
     --md-on-secondary: #FFFFFF;
@@ -41,13 +41,11 @@
     --md-disabled: #BDBDBD;
 
     /* Shadows */
-    --md-shadow-1:
-            0 1px 3px rgba(0, 0, 0, 0.12),
-            0 1px 2px rgba(0, 0, 0, 0.24);
+    --md-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
 
-    --md-shadow-2:
-            0 3px 6px rgba(0, 0, 0, 0.16),
-            0 3px 6px rgba(0, 0, 0, 0.23);
+    --md-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 
@@ -124,7 +122,7 @@
 }
 
 body {
-    font-family: "Red Hat Display", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "Montserrat Regular", "Red Hat Display", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 

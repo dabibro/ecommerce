@@ -85,15 +85,20 @@ class App
         return $array;
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function StatesList($path = ""): array
     {
         $file_handler = new FileHandler();
         $json = $path . 'json/states-locals.json';
         $states = $file_handler->JsonReader($json);
-        $states = json_decode(json_encode($states), true);
-        return $states;
+        return json_decode(json_encode($states, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function getStateSelect($selected = ""): string
     {
         $result = "";
@@ -106,6 +111,9 @@ class App
         return $result;
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function getStateLocalsSelect($state = "", $selected = ""): string
     {
         $result = '<option value=""> -- Select --</option>';
@@ -120,14 +128,6 @@ class App
             }
         }
         return $result;
-    }
-
-    public function getWardsSelect($params = [], $selected = ""): void
-    {
-        $records = new ProcManagerManagerService();
-        $wards = $records->getWard($params);
-        echo '<option>-- Select --</option>';
-        DataHandlers::DropDownList($wards, 'code', 'name', $selected);
     }
 
     public function getURL($uri = 1): string
@@ -175,88 +175,6 @@ class App
 
             ],
         ];
-    }
-
-    public function getAppPricing($select = ""): array
-    {
-        $plans = [
-            "BAS" => [
-                'name' => 'Basic',
-                'price' => 200,
-                'features' => [
-                    'User Management',
-                    'Inventory Management',
-                    'Sales Management',
-                ]
-            ],
-            "STA" => [
-                'name' => 'Standard',
-                'duration' => 3,
-                'price' => 250,
-                'features' => [
-                    'User Management',
-                    'Inventory Management',
-                    'Sales Management',
-                    'Customer Management',
-                ]
-            ],
-            "PRO" => [
-                'name' => 'Professional',
-                'duration' => 6,
-                'price' => 300,
-                'features' => [
-                    'User Management',
-                    'Inventory Management',
-                    'Sales Management',
-                    'Customer Management',
-                    'Supplier Management',
-                ]
-            ],
-            "ENT" => [
-                'name' => 'Enterprise',
-                'duration' => 12,
-                'price' => 500,
-                'features' => [
-                    'User Management',
-                    'Inventory Management',
-                    'Sales Management',
-                    'Customer Management',
-                    'Supplier Management',
-                    'Location Management',
-                    'Expenses Management',
-                ]
-            ],
-        ];
-        $response = $plans;
-        if (!empty($select)) {
-            $response = $plans[$select];
-        }
-        return $response;
-    }
-
-    public function getAppDuration($duration = "")
-    {
-        $durations = [
-            1 => '1 - Day',
-            2 => '2 - Days',
-            3 => '3 - Days',
-            4 => '4 - Days',
-            5 => '5 - Days',
-            6 => '6 - Days',
-            7 => '1 - Week',
-            14 => '2 - Weeks',
-            21 => '3 - Weeks',
-            30 => '1 - Month',
-            90 => '3 - Months',
-            180 => '6 - Months',
-            367 => '1 - Year',
-            734 => '2 - Years',
-        ];
-        $response = $durations;
-        if (!empty($duration)) {
-            $response = $durations[$duration];
-        }
-        return $response;
     }
 
     public function alert($params = []): void
@@ -376,5 +294,32 @@ class App
     public function reload(): void
     {
         die('<script>location.reload()</script>');
+    }
+
+    public function openNotification($params = []): void
+    {
+        $icon = '<i class="ri-error-warning-line ri-4x text-danger"></i>';
+        if (!empty($params['success'])) {
+            $icon = '<i class="ri-checkbox-circle-line text-success ri-4x"></i>';
+        }
+        echo '<div class="text-center py-4">';
+        echo $icon;
+        echo '<h4>' . $params['title'] . '</h4>';
+        echo '<p class="h6 px-3">' . $params['message'] . '</p>';
+        if (!empty($params['button'])) {
+            $onclick = "";
+            if (!empty($params['button']['onclick'])) {
+                $onclick = 'onclick=\'' . $params['button']['onclick'] . '\' ';
+            }
+            echo '<button type="button" class="btn btn-lg primary-button px-4 rounded-pill mt-3" ' . $onclick . ' >' . $params['button']['label'] . '</button>';
+        }
+        echo '</div>';
+        if (!empty($params['reload'])) {
+            echo '<script>
+                    $("#app-modal").on("hidden.bs.modal", function (){
+                    location.reload();
+                   });                    
+                  </script>';
+        }
     }
 }

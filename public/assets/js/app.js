@@ -132,7 +132,6 @@ function openNotification(params) {
     });
 }
 
-
 function pleaseWait() {
     let content = open_modal(app_modal, '1');
     $(app_modal + " .modal-header").hide();
@@ -254,4 +253,12 @@ function navigate(path) {
 
 function viewDocument(filename) {
     window.open(filename, '_blank');
+}
+
+function states_local(state, dst) {
+    $.post(base_path + 'state-locals', {
+        state: state
+    }, function (response) {
+        $(dst).html(response);
+    });
 }

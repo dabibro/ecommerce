@@ -1,5 +1,5 @@
 <!-- Top Header -->
-<div class="bg-primary border-bottom py-1 small">
+<div class="bg-primary border-bottom py-1 small d-none d-md-block">
     <div class="container d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex align-items-center">
       <span class="me-3 text-white">
@@ -165,13 +165,13 @@
                                            href="javascript:">Welcome, <?= $this->auth->customer_name ?></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="<?= BASE_PATH ?>profile/">My Profile</a>
+                                        <a class="nav-link " href="<?= BASE_PATH ?>account/profile/">My Profile</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="<?= BASE_PATH ?>orders/">My Order</a>
+                                        <a class="nav-link " href="<?= BASE_PATH ?>account/orders/">My Order</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="<?= BASE_PATH ?>orders/">My Wishlist</a>
+                                        <a class="nav-link " href="<?= BASE_PATH ?>account/orders/">My Wishlist</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" onclick="logOut()" href="javascript:">Logout?</a>

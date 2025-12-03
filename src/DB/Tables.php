@@ -11,7 +11,8 @@ namespace App\DB;
 
 class Tables
 {
-    public string $config, $stores, $categories, $products, $invoices, $sold_products, $customers;
+    public string $config, $stores, $categories, $products, $invoices, $sold_products,
+        $customers, $delivery_options, $payment_options, $shipping_details;
     public $storage;
     public $measurement;
     public $transfers;
@@ -35,12 +36,15 @@ class Tables
         $this->config = 'app_config';
         $this->stores = 'app_stores';
         $this->customers = 'app_customers';
+        $this->delivery_options = 'delivery_options';
+        $this->payment_options = 'payment_settings';
+        $this->shipping_details = 'shipping_details';
         //Inventory
         $this->categories = 'app_inventory_category';
         $this->products = 'app_inventory';
 
         //Sales
-        $this->invoices = 'app_sales_invoice';
+        $this->invoices = 'app_sales_invoices';
         $this->sold_products = 'app_sales_products';
 
         $this->stocking = "inventory_stocking";

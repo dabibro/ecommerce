@@ -47,7 +47,7 @@ class ProductsController extends App
                             </a>
                         </div>
                         <div class="iq-product-card-hover-effect-2 iq-product-info">
-                            <a href="javascript:" class="btn btn-icon iq-product-btn rounded-pill cart-btn add-to-cart"
+                            <a href="javascript:" class="btn btn-icon iq-product-btn rounded-pill cart-btn add-to-cart" data-action="add"
                             data-id="' . $product['product_id'] . '" data-name="' . $product['product_name'] . '" data-price="' . $product['sale_price'] . '" data-image="' . $image . '">
                             <span class="btn-inner">
                                 <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"

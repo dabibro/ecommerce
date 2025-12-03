@@ -4,9 +4,12 @@ namespace App\Controller\Store;
 
 use App\API\Application;
 use App\API\Customers;
+use App\API\Orders;
 use App\API\Products;
 use App\Infrastructure\App;
 use App\Infrastructure\DataHandlers;
+use App\Infrastructure\Responses;
+use Random\RandomException;
 
 class HomeController extends App
 {
@@ -22,6 +25,8 @@ class HomeController extends App
     public $cart_total;
     public $product_detail;
 
+    public $order, $order_products, $shipping;
+
     protected string $logo, $header_title, $min_price, $max_price;
     protected array $price_params;
     protected Application $appAPI;
@@ -33,6 +38,8 @@ class HomeController extends App
     protected ProductsController $productsController;
 
     protected CartController $cartController;
+
+    protected Orders $orderAPI;
 
 
     /**
@@ -164,20 +171,109 @@ class HomeController extends App
         $this->layout();
     }
 
-    public function cart_to_database()
+    /**
+     * @throws RandomException
+     */
+    public function cart_to_database(): void
     {
+        $this->cartController = new CartController();
+        $this->orderAPI = new Orders();
+        if (empty($_SESSION[$this->cartController->cart_session]) || $this->cartController->countItems() <= 0) {
+            die('<script>alert("Your cart is empty."); location.reload();</script>');
+        }
+        if (empty($this->auth->id)) {
+            die('<script>openLogin();</script>');
+        }
+        $reference = 'ORD' . DataHandlers::generate_random_string(7, '01234567890987654321');
+        $order = [
+            'reference' => $reference,
+            'sales_location' => $this->store->reference,
+            'customer_type' => 'Online Customer',
+            'customer_id' => $this->auth->customer_id,
+            'customer_name' => $this->auth->customer_name,
+            'subtotal' => $this->cartController->getTotal(),
+            'total_due' => $this->cartController->getTotal(),
+            'payment_status' => 0,
+            'created_by' => $this->auth->customer_name,
+            'created_on' => $this->current_timestamp
+        ];
+        $create_order = $this->orderAPI->createOrder($order);
+        if ($create_order['response'] !== '200') {
+            die(Responses::alertResponseUI('Error occurred submitting order' . $create_order['message'], 'danger'));
+        }
+        $products = $this->cartController->getItems();
+        foreach ($products as $product => $item) {
+            $this->productsAPI = new Products();
+            $getProduct = $this->productsAPI->getProduct(['id' => $item['product_id']]);
+            if (!empty($getProduct)) {
+                $getProduct = $getProduct[0];
+            }
+            $error = "";
+            if (!empty($getProduct)) {
+                $params = [
+                    'reference' => $reference,
+                    'sales_location' => $this->store->reference,
+                    'customer_id' => $this->auth->customer_id,
+                    'customer_name' => $this->auth->customer_name,
+                    'product_id' => $product,
+                    'product_name' => htmlspecialchars_decode($item['name']),
+                    'quantity' => $item['qty'],
+                    'price' => $item['price'],
+                    'unit_price' => $item['price'],
+                    'status' => 0,
+                    'created_by' => $this->auth->customer_name,
+                ];
+                $submit = $this->orderAPI->createOrderProduct($params);
+                if ($submit['response'] !== '200') {
+                    $error .= Responses::alertResponseUI('Error submitting ' . $item['name'], 'danger') . '<br>';
+                }
+            }
 
+        }
+        if (!empty($error)) {
+            die($error);
+        }
+        $this->cartController->clearCart();
+        $this->replace(BASE_PATH . 'checkout/' . $reference);
 
     }
 
-    public function checkout(): void
+    public function checkout($reference): void
     {
-        $this->page_title = "Cart | " . $this->site_name;
-        $this->page = $this->pages . 'cart.php';
+        $this->appAPI = new Application();
+        $this->orderAPI = new Orders();
+        $getOrder = $this->orderAPI->getOrder(['reference' => $reference]);
+        if (empty($getOrder)) {
+            $this->replace(BASE_PATH . 'cart');
+        }
+        $this->order = DataHandlers::convertObj($getOrder[0]);
+        $this->page_title = "Checkout | " . $this->site_name;
+        $this->page = $this->pages . 'checkout.php';
         $this->cartController = new CartController();
+        $this->customerAPI = new Customers();
+        $this->shipping = $this->customerAPI->getShipping(['user_id' => $this->auth->id]);
+
         $this->cart_items = $this->cartController->getItems();
         $this->layout();
+    }
 
+    /**
+     * @throws \JsonException
+     */
+    public function update_order(): void
+    {
+        $this->orderAPI = new Orders();
+        $_POST['pkField'] = 'id';
+        $this->orderAPI->updateOrder($_POST);
+        echo json_encode(['success' => 1], JSON_THROW_ON_ERROR);
+    }
+
+    public function order_summary(): void
+    {
+        $this->orderAPI = new Orders();
+        $getOrder = $this->orderAPI->getOrder(['id' => $_POST['id']]);
+        $this->order = DataHandlers::convertObj($getOrder[0]);
+        require __DIR__ . '/../../../view/store/side/order-summary.php';
     }
 
 

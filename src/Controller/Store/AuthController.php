@@ -139,11 +139,7 @@ class AuthController extends HomeController
         ];
         $params = json_encode($param, JSON_THROW_ON_ERROR);
         setcookie($this->auth_session, $params, $this->session_expiry, BASE_PATH);
-        if (empty($_POST['redirection'])) {
-            $this->replace(BASE_PATH);
-        } else {
-            $this->replace($_POST['redirection']);
-        }
+        $this->reload();
     }
 
     /**
@@ -165,7 +161,7 @@ class AuthController extends HomeController
             setcookie($this->auth_session, '', time() - 3600, '/');
             unset($_COOKIE[$this->auth_session]);
         }
-        $this->replace(BASE_PATH);
+        $this->reload();
     }
 
     public function forgot_password(): void

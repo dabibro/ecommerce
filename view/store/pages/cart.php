@@ -38,7 +38,8 @@
                                                          loading="lazy">
                                                     <div style="white-space: normal;  word-wrap: break-word;">
                                                         <h5 class="mb-3" style="font-size: 14px;">
-                                                            <?= strtoupper($item['name']) ?>
+                                                            <a href="<?= BASE_PATH . 'product/' . $item['product_id'] ?>"
+                                                               class="text-dark"><?= strtoupper($item['name']) ?></a>
                                                         </h5>
                                                         <!--                                                        <p class="mb-1">Colour: Red &amp; Black</p>-->
                                                         <!--                                                        <p class="mb-1">Size: L</p>-->
@@ -123,10 +124,10 @@
                                     <h6 class="text-primary"
                                         id="cart-subtotal"><?= $this->currency . ' ' . number_format($this->cart_total, 2) ?></h6>
                                 </div>
-                                <div class="d-flex justify-content-between mb-4">
+                           <!--     <div class="d-flex justify-content-between mb-4">
                                     <h6>Discount</h6>
-                                    <h6 class="text-success"><?= $this->currency . ' ' . number_format(0, 2) ?></h6>
-                                </div>
+                                    <h6 class="text-success"><?php /*= $this->currency . ' ' . number_format(0, 2) */?></h6>
+                                </div>-->
                             </div>
                             <div class="mt-4">
                                 <div class="d-flex justify-content-between mb-4">

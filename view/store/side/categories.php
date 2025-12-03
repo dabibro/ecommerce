@@ -1,3 +1,4 @@
+<!--<a href="javascript:" onclick="ToastAlert({message:'Hello'})">js test</a>-->
 <div class="card iq-filter-card">
     <div class="card-body">
         <a class="bg-transparent d-flex justify-content-between iq-custom-collapse pb-3"

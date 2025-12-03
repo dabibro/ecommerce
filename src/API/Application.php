@@ -24,5 +24,14 @@ class Application
         return $this->service->getStoreConfig($params);
     }
 
+    public function getDeliveryOption($params = []): array
+    {
+        return $this->service->getDeliveryOption($params);
+    }
+
+    public function getPaymentOption($params = []): array
+    {
+        return $this->service->getPaymentOption($params);
+    }
 
 }

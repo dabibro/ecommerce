@@ -65,6 +65,7 @@
                             </div>
                             <div class="d-flex my-4">
                                 <?php
+                                $image = \App\Controller\Store\ProductsController::ProductImages($this->product_detail->product_images);
                                 $main_price = "";
                                 $price = $this->product_detail->sale_price;
                                 if (!empty($this->product_detail->discount) && $this->product_detail->discount > 0):
@@ -87,11 +88,11 @@
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <span class="text-dark">Category:</span>
-                                <span class="text-primary  ms-2"><?= strtoupper($this->category_data->category)?></span>
+                                <span class="text-primary  ms-2"><?= strtoupper($this->category_data->category) ?></span>
                             </div>
                         </div>
                         <div>
-                            <div class="btn-group iq-qty-btn mb-3" data-qty="btn" role="group">
+                            <div class="btn-group iq-qty- w-25 mb-3" data-qty="btn" role="group">
                                 <button type="button" class="btn btn-sm btn-outline-light iq-quantity-minus">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="6" height="3" viewBox="0 0 6 3"
                                          fill="none">
@@ -99,8 +100,9 @@
                                               fill="currentColor"></path>
                                     </svg>
                                 </button>
-                                <input type="text" class="btn btn-sm btn-outline-light input-display" data-qty="input"
-                                       pattern="^(0|[1-9][0-9]*)$" minlength="1" maxlength="2" value="2" title="Qty"
+                                <input type="text" class="btn btn-sm btn-outline-light input-display item-qty"
+                                       data-qty="input"
+                                       pattern="^(0|[1-9][0-9]*)$" minlength="1" maxlength="1" value="1" title="Qty"
                                        readonly="">
                                 <button type="button" class="btn btn-sm btn-outline-light iq-quantity-plus">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8"
@@ -111,7 +113,13 @@
                                 </button>
                             </div>
                             <div class="d-flex py-4 flex-wrap gap-4">
-                                <a href="./order-process.html" class="btn btn-warning d-flex align-items-center gap-2">
+                                <a href="javascript:"
+                                   data-action="buy"
+                                   data-id="<?= $this->product_detail->id ?>"
+                                   data-name="<?= $this->product_detail->product_name ?>"
+                                   data-price="<?= $this->product_detail->sale_price ?>"
+                                   data-image="<?= $image ?>"
+                                   class="btn btn-warning d-flex align-items-center gap-2 add-to-cart">
                                         <span class="btn-inner d-flex ">
                                             <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -124,9 +132,14 @@
                                         </span>
                                     Buy Now
                                 </a>
-                                <button class="btn btn-primary d-flex align-items-center cart-btn  gap-2">
+                                <button class="btn btn-primary d-flex align-items-center cart-btn add-to-cart gap-2"
+                                        data-action="add"
+                                        data-id="<?= $this->product_detail->id ?>"
+                                        data-name="<?= $this->product_detail->product_name ?>"
+                                        data-price="<?= $this->product_detail->sale_price ?>"
+                                        data-image="<?= $image ?>">
                                         <span class="btn-inner d-flex">
-                                            <svg class="icon-20" width="20" viewBox="0 0 24 24" fill="none"
+                                            <svg class="icon-20 ri" width="20" viewBox="0 0 24 24" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
                                                       d="M5.91064 20.5886C5.91064 19.7486 6.59064 19.0686 7.43064 19.0686C8.26064 19.0686 8.94064 19.7486 8.94064 20.5886C8.94064 21.4186 8.26064 22.0986 7.43064 22.0986C6.59064 22.0986 5.91064 21.4186 5.91064 20.5886ZM17.1606 20.5886C17.1606 19.7486 17.8406 19.0686 18.6806 19.0686C19.5106 19.0686 20.1906 19.7486 20.1906 20.5886C20.1906 21.4186 19.5106 22.0986 18.6806 22.0986C17.8406 22.0986 17.1606 21.4186 17.1606 20.5886Z"

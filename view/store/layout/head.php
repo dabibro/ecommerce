@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="<?php echo $this->assets; ?>vendor/remixicon/fonts/remixicon.css">
     <link rel="stylesheet" href="<?php echo $this->assets . 'hope-ui/'; ?>css/e-commerce.min.css">
     <link rel="stylesheet" href="<?php echo $this->assets . 'hope-ui/'; ?>vendor/noUiSilder/nouislider.min.css">
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="<?php echo $this->assets . 'vendor/'; ?>toastr/toastr.min.css">
+
     <link href="<?php echo $this->assets; ?>css/material-ui.css" rel="stylesheet">
     <?php
     if (!empty($this->styles)) {

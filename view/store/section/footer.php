@@ -39,34 +39,40 @@
                             </svg>
                             Privacy Policy
                         </li>
-                        <li>
+                        <li class="mb-3">
                             <svg class="me-2 text-primary" width="7" height="8" viewBox="0 0 7 8" fill="none">
                                 <circle cx="3.5" cy="4" r="3.5" fill="currentColor"/>
                             </svg>
                             Cookies Policy
                         </li>
+                        <li>
+                            <svg class="me-2 text-primary" width="7" height="8" viewBox="0 0 7 8" fill="none">
+                                <circle cx="3.5" cy="4" r="3.5" fill="currentColor"/>
+                            </svg>
+                            <a href="<?= BASE_PATH . 'contact' ?>" class="text-white"> Contact Us</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-2 mt-md-0 mt-4">
-                    <h5 class="mb-4 text-white">Help</h5>
+                    <h5 class="mb-4 text-white">My Account</h5>
                     <ul class="m-0 p-0 list-unstyled text-white">
                         <li class="mb-3">
                             <svg class="me-2 text-primary" width="7" height="8" viewBox="0 0 7 8" fill="none">
                                 <circle cx="3.5" cy="4" r="3.5" fill="currentColor"/>
                             </svg>
-                            My Account
+                            <a href="<?= BASE_PATH . 'cart' ?>" class="text-white"> My Cart</a>
                         </li>
                         <li class="mb-3">
                             <svg class="me-2 text-primary" width="7" height="8" viewBox="0 0 7 8" fill="none">
                                 <circle cx="3.5" cy="4" r="3.5" fill="currentColor"/>
                             </svg>
-                            My Orders
+                            <a href="<?= BASE_PATH . 'account/orders/' ?>" class="text-white"> My Orders</a>
                         </li>
-                        <li>
+                        <li class="mb-3">
                             <svg class="me-2 text-primary" width="7" height="8" viewBox="0 0 7 8" fill="none">
                                 <circle cx="3.5" cy="4" r="3.5" fill="currentColor"/>
                             </svg>
-                            Contact Us
+                            <a href="<?= BASE_PATH . 'account/wishlist/' ?>" class="text-white"> My Wishlist</a>
                         </li>
                     </ul>
                 </div>

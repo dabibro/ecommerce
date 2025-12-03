@@ -56,5 +56,20 @@ class Customers
         return $this->service->updateCustomer($params);
     }
 
+    public function getShipping($params=[]): array
+    {
+        return $this->service->getShipping($params);
+    }
+
+    public function createShipping($params = []): array
+    {
+        return $this->service->createShipping($params);
+    }
+
+    public function updateShipping($params = []): array
+    {
+        return $this->service->updateShipping($params);
+    }
+
 
 }

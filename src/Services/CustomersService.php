@@ -43,4 +43,37 @@ class CustomersService
         }
         return $result;
     }
+
+
+    public function getShipping($params = []): array
+    {
+        $result = [];
+        $resp = $this->repository->getShipping($params);
+        if (!empty($resp['dataArray'])) {
+            $result = $resp['dataArray'];
+        }
+        return $result;
+
+    }
+
+    public function createShipping($params = []): array
+    {
+        $result = [];
+        $resp = $this->repository->createShipping($params);
+        if (!empty($resp)) {
+            $result = $resp;
+        }
+        return $result;
+    }
+
+    public function updateShipping($params = []): array
+    {
+        $result = [];
+        $resp = $this->repository->updateShipping($params);
+        if (!empty($resp)) {
+            $result = $resp;
+        }
+        return $result;
+    }
+
 }

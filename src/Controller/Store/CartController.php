@@ -36,12 +36,13 @@ class CartController
         $name = $_POST['name'];
         $price = $_POST['price'];
         $qty = 1;
+        if (isset($_POST['qty']) && $_POST['qty'] > 0) {
+            $qty = $_POST['qty'];
+        }
         $image = $_POST['image'];
         if (isset($_SESSION[$this->cart_session][$productId])) {
-            // Item exists → update quantity
             $_SESSION[$this->cart_session][$productId]['qty'] += $qty;
         } else {
-            // Add new item
             $_SESSION[$this->cart_session][$productId] = [
                 'product_id' => $productId,
                 'name' => $name,
@@ -50,13 +51,17 @@ class CartController
                 'image' => $image
             ];
         }
-        echo json_encode([
+        $params = [
             "success" => true,
             "cartCount" => $this->countItems(),
 //            "items" => $this->getItems(),
 //            "total" => $this->getTotal(),
 
-        ], JSON_THROW_ON_ERROR);
+        ];
+        if ($_POST['action'] === 'buy') {
+            $params['redirect'] = BASE_PATH . 'cart';
+        }
+        echo json_encode($params, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -79,6 +84,7 @@ class CartController
             "success" => true,
             "cartCount" => $this->countItems(),
             "itemCost" => number_format($item['qty'] * $item['price'], 2),
+            'total' => number_format($this->getTotal(), 2),
         ], JSON_THROW_ON_ERROR);
     }
 
@@ -95,6 +101,7 @@ class CartController
         echo json_encode([
             "success" => true,
             "cartCount" => $this->countItems(),
+            'total' => number_format($this->getTotal(), 2),
         ], JSON_THROW_ON_ERROR);
     }
 
